@@ -4,8 +4,8 @@ package company
 import (
 	"context"
 
-	"moul.io/protoc-gen-gotemplate/examples/import/output/models/article"
-	"moul.io/protoc-gen-gotemplate/examples/import/output/models/common"
+	"github.com/batazor/protoc-gen-gotemplate/examples/import/output/models/article"
+	"github.com/batazor/protoc-gen-gotemplate/examples/import/output/models/common"
 )
 
 type Repository interface {
