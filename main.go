@@ -117,9 +117,19 @@ func main() {
 			g.Error(err, "registry: failed to load the request")
 		}
 	}
+	
+	filesToGenerate := map[string]struct{}{}
+	for _, file := range g.Request.FileToGenerate {
+		filesToGenerate[file] = struct{}{}
+	}
 
 	// Generate the encoders
 	for _, file := range g.Request.GetProtoFile() {
+		// Ignore files not in g.Request.FileToGenerate.
+		if _, ok := filesToGenerate[*file.Name]; !ok {
+			continue
+		}
+		
 		if all {
 			if singlePackageMode {
 				if _, err = registry.LookupFile(file.GetName()); err != nil {
